@@ -25,7 +25,6 @@ export default function Dashboard({ data }) {
     new Date(e.timestamp).toLocaleTimeString()
   );
 
-  // Latest values for cards
   const latest = data.history[data.history.length - 1] || {};
 
   const configs = [
