@@ -29,13 +29,11 @@ function App() {
     return () => clearInterval(id);
   }, []);
 
-  const totalEnergy = readings.reduce((sum, r) => sum + (r.energy || 0), 0);
   const history = readings.map((r) => ({
     timestamp: r.timestamp,
     voltage: r.voltage,
     current: r.current,
     power: r.power,
-    usage: r.energy, 
   }));
 
   return (
@@ -43,9 +41,7 @@ function App() {
       <h1>USTP Electricity Dashboard</h1>
       {loading && <p>Loading…</p>}
       {error && <p className="error">{error}</p>}
-      {!loading && !error && (
-        <Dashboard data={{ total: totalEnergy, history }} />
-      )}
+      {!loading && !error && <Dashboard data={{ history }} />}
     </main>
   );
 }

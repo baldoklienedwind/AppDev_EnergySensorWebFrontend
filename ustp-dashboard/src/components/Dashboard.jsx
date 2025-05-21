@@ -25,17 +25,27 @@ export default function Dashboard({ data }) {
     new Date(e.timestamp).toLocaleTimeString()
   );
 
+  // Latest values for cards
+  const latest = data.history[data.history.length - 1] || {};
+
   const configs = [
     { label: "Voltage (V)", key: "voltage" },
     { label: "Current (A)", key: "current" },
     { label: "Power (W)", key: "power" },
-    { label: "Energy (kWh)", key: "usage" },
   ];
 
   return (
     <section className="dashboard">
-      <div className="card">
-        <strong>Total Energy:</strong> {data.total.toFixed(3)} kWh
+      <div className="cards">
+        <div className="card">
+          <strong>Voltage:</strong> {latest.voltage?.toFixed(2) || "--"} V
+        </div>
+        <div className="card">
+          <strong>Current:</strong> {latest.current?.toFixed(2) || "--"} A
+        </div>
+        <div className="card">
+          <strong>Power:</strong> {latest.power?.toFixed(2) || "--"} W
+        </div>
       </div>
 
       {configs.map(({ label, key }) => {
