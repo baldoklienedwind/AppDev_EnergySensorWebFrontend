@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     fetchReadings();
-    const id = setInterval(fetchReadings, 60000);
+    const id = setInterval(fetchReadings, 5000);
     return () => clearInterval(id);
   }, []);
 
